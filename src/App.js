@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; 
+const API = (process.env.REACT_APP_API_URL || "http://localhost:5000").replace(/\/$/, "");
 
 
 import axios from "axios";
@@ -30,7 +31,7 @@ function App() {
 
   const getApi = () => {
   return axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: API,
     headers: token ? { Authorization: `Bearer ${token}` } : {}
   });
 };
@@ -54,11 +55,11 @@ function App() {
   if (!username || !password) return;
 
   axios
-    .post("http://localhost:5000/register", { username, password })
+    .post(`${API}/register`, { username, password })
     .then(res => {
       // login automático após registro
       axios
-        .post("http://localhost:5000/login", { username, password })
+        .post(`${API}/login`, { username, password })
         .then(loginRes => {
           const token = loginRes.data.token;
           setToken(token);
