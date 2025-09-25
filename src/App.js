@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; 
-const API = (process.env.REACT_APP_API_URL || "http://localhost:5000").replace(/\/$/, "");
+
 
 
 import axios from "axios";
 import './App.css';
-
+const API = (process.env.REACT_APP_API_URL || "http://localhost:5000").replace(/\/$/, "");
 
 function App() {
   
